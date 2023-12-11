@@ -36,3 +36,5 @@ If you intend to be a contributor or want to make use of this document, in parts
 [api]: apis/API.md
 [licence]: Licence.md "Satyarat documentation license"
 [contributing]: Contributing.md "Satyarat contributing guide"
+
+For close engagements, find us on [Discord 💬](https://discord.gg/pAEzwZY9Su)
