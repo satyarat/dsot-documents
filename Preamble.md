@@ -24,5 +24,3 @@ In order to achieve this mechanism, the following principles are determined:
 6. Data not to be accessed in anyway other than the system permits
 7. Intuitive, easy and secure ways to be made available to the user to protect their data and exchange messages
 8. Be simple, as much as possible
-
-This concludes the preamble.
