@@ -1,6 +1,6 @@
 [![status](https://img.shields.io/badge/status-Open-blue?style=for-the-badge&logo=appveyor)](https://img.shields.io/badge/status-Open-blue)
 
-The preamble describes the intentions and purpose of this software mechanism for a decentralized, distributed and unsupervised way of providing **Source of Truth (SoT)**. This forms the base of the rest of the process. Specifications should not deviate from what is stated herein.
+The preamble describes the intentions and purpose of this software mechanism, which is intended to be a decentralized, distributed and unsupervised way of providing **Source of Truth (SoT)**. This forms the base for the rest of the documentation. Specifications should not deviate from what is stated herein.
 
 The basic intention and purpose is to attempt to bring forth a medium that can bring transparency and infallibility to certain key areas of the social fabric of the world that it seems to be struggling with, and to do it with as much simplicity as possible. In fact a lot of our issues can be eased, if we can have a completely trustworthy SoT mechanism.
 
