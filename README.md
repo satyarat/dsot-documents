@@ -4,7 +4,7 @@ This document will be used to define, refine and lock the design and specificati
 
 Any and all parts of these documents will be open for review and change as long as it adheres to the intentions of developing this mechanism (formalized in the Preamble). Most of the content before the specifications are my preliminary approaches and concepts. Changes to them will eventually affect the specifications documents.
 
-The design and development process is adjudged as follows:
+<u>High-level overview of design and development process</u>:
 > concept –> design –> functional specifications –> technical specifications –> TDD –> code –> functional test –> unit implementation –> integrations tests –> final implementation
 
 This document has the following sections:
@@ -20,7 +20,7 @@ This document has the following sections:
 - [Technical Specification Document][tsd]
 - [APIs][api]
 
-The current status for each of the sections will be displayed prominently.
+The current status of each section will be displayed prominently.
 
 If you intend to be a contributor or want to make use of this document, in parts or entirety, please make sure to read the [Licence][licence] and [Contributing][contributing] sections.
 
