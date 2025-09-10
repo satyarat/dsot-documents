@@ -1,6 +1,8 @@
 [![status](https://img.shields.io/badge/status-Open-blue?style=for-the-badge&logo=appveyor)](https://img.shields.io/badge/status-Open-blue)
 
-This document describes the preliminary design concepts for Satyarat (DSoT). This will further ensue documenting the design in detail.
+## Design Concept
+
+This document describes the preliminary design concepts for *Satyarat* (DSoT). This will further ensue documenting the design in detail.
 
 As can be inferred from the introduction, this will be a P2P based mechanism where data and local processing will be borne by every node. The main goals are security, immutability, distribution, availability and persistence of data.
 
@@ -12,19 +14,43 @@ Data, of essence, will be mainly composed of messages, which will be the actual 
 
 The design has to take into the consideration the principles defined in the [Preamble][preamble], and so we start with a high level design concept that can ensure that these principles are adhered to.
 
-For principle 1, we already have described the basic design that will be a P2P, distributed computing and storage mechanism. Each node will have the same logical computing and will operate on its own without any means for external influence, but should also be able to connect to a central service to find peers. This service can be provided by the Forge. Will it affect independent functioning? I would say no, because the Forge’s functioning only involves registering the nodes that have come ‘online’ as one of the binaries published by it. In other words, all nodes that would be running binaries published by the Forge would be under one umbrella.
+**<ins>Principle 1</ins>**: System closed to any dominion and alterations
 
-For principle 2, we would be using a storage system that is immutable and tamper-proof. We already have a few very good open-source storage systems that we can use and/or extend to meet this requirement. However, we also do not want to rely completely on the capabilities of the storage system. What happens if the storage system is breached? That takes us to principle 3.
+We have already described that the basic design will be a P2P, distributed computing and distributed storage mechanism. Each node will have the same logical computing and will operate on its own without any means for external influence. However, this mechanism also requires one more component. This component can be called the *Forge*, as it will be the one to churn out the required binaries. The Forge and the nodes that it will produce, will form an *ether* when connected over a network. Each node has to be registrated with the Forge to be on the ether. They will be validated by the Forge with a unique signature before allowing its registration, after which the node can become eligible for peer discovery and become operational.
 
-To ensure principle 3, data replication will trace the path (Tracing of data paths will be defined after we define the way to categorize data) and validate if data has altered anywhere in between, based on origin and consensus. If it finds a node where data has changed, it stops any further replication from the node and that node would be evicted from the list of valid nodes. In this regard, we can divide data into two categories - identifiers and values. If the identifiers are changed, then they become totally new records, dangled and useless. If the values, which will generally are to be encrypted, are changed then decryption won’t work for those values and for these cases we would trace the path of the data from its origin to ensure we are not replicating corrupt data. This operation will be performed by the node that is accepting the replicating data. It has to skim all the nodes that have held the data and determine origin, consensus and validity. So in this mechanism, replication will relatively be a much slower and of course asynchronous operation.
+The basic idea is as follows. An entity can initiate and publish a Forge. A user who wants to be on this ether can request a binary from this Forge to run on their machine as a node on the ether. When the node runs, it registers itself with the Forge and the Forge adds it to a list of valid nodes. If say, this is the first node on this particular ether, and another node comes online, the Forge will send a signal to the existing node(s) about the presence of this new node. The existing node can then ping this new node and add it to its own list. A node can infer adjacency by calculating response time from peer node. The new node can request a streaming list of nodes from the Forge and update its local list by pinging other nodes from the received list.
 
-Principle 4 is ensured by the adoption of the medium. If there are sufficient nodes available, replication will ensure that data persistence gradually becomes almost absolute. However, we need to put an upper limit on the number of times a data can be replicated. To my mind, 9 should be a good number.
+Each node will also carry the fingerprint of the Forge, so that if a dirty binary is created from a compromised version of this Forge, the existing nodes can reject it.
 
-For principle 5 & 6, we would have encryptions. For sensitive data, it would be double-layered encryption. I would like to provide the options to manage keys or let the system manage the keys. I also propose the option to generate the encryption keys based on human (user) memories.
+This mechanism aims to ensure that the nodes always belong to its publishing Forge and hence cannot be used to alter data by way of using a tampered node that the Forge cannot identify as its own.
 
-Principle 7 is ensured by limiting the features of the system to just be about SoT. Also, by providing required APIs for this purpose.
+**<ins>Principle 2</ins>**: Data should always be immutable
 
-Principle 8 is about the very design of the mechanism. It is about delivering on the goals without making it complex. It is about using/creating ingenious techniques rather than falling onto some absolute complex mechanism (which generally leads to unmanageable and thorny side-effects) to provision the requirements.
+To fulfill this, we would be using a storage system that is immutable and tamper-proof. We have a few open-source storage systems that we can use and/or extend to meet this requirement. However, we also do not want to rely completely on the capabilities of the storage system. What happens if the storage is breached? That takes us to number three.
+
+**<ins>Principle 3</ins>**: Output remains unaffected by data corruption
+
+Data can be viewed in a few different ways in this system. First we can say we have the data - the information generated by a user and the metadata - the information used to identify and/or garnish information about the data. Another category would be the data that originated on the 'current' user node. Altering metadata for this type of data should not correspond to data corruption, if the metadata is never used in message processing in anyway. Then we have the data that orignated elsewhere on the ether. Making any change to this data or its metadata will definitely be termed as data corruption. This can happen in two ways. First, by creating a dirty node that can alter data after they are received or before they are synced. Second, by breaking the encryption of the stored data or finding a way to bypass the immutability of the data store.
+
+The first scenario is taken care of by implementing a mechanism as discussed previously under the first principal. The second scenario is very unlikely, but a contigency needs to be in place even for that. This involves further two scenarios - data leak and data alter. Data leak by breaking of encryption can be prevented by providing options for multi-layered encryptions and intelligent implementations of key management and algorithms. The solution to data corruption is inherent in the data replication design, which should enable consesus gathering and validation on the basis of it. Presuming that it does, this should also allow to mark the culprit node as dirty. Once a dirty node is discovered it would be evicted from the list of valid nodes and as such all replication would stop from the node. A contract can be formed over a message only if it is secured on all the allowed maximum number of nodes (TBD) with 100% consensus.
+
+**<ins>Principle 4</ins>**: Data persistence for as long as required
+
+The adoption of the medium itself will ensure it. If there are sufficient nodes available, replication will ensure that data persistence gradually becomes almost absolute. However, we need to put an upper limit on the number of times a data record can be replicated.
+
+**<ins>Principle 5 & 6</ins>**: Data to be used only for intended purposes
+
+These principles can be affirmed by allowing data exchange only through provided APIs. By employing superior encryption mechanisms and immutabe data store, we can close down all other ways. We have already discussed ways to protect node integrity.
+
+**<ins>Principle 7</ins>**: APIs for end user
+
+The system should present an uncomplicated set of APIs for the end user to enable them to exchange messages and protect their data with certain options to choose as they deem fit.
+
+These options can involve a choice of layered encryptions, key management and ways to generate their secure keys, including using their real-life memories that they can reproduce in one go or in a series of events.
+
+**<ins>Principle 8</ins>**: Simplicity and inextensibility
+
+This is about the design itself. This is about creating a logical mechanism that fulfills its goal in the most 'organic' way, rather than falling onto complex algorithms (which generally leads to unmanageable and thorny side-effects) to provision the requirements. The system should be closed to any extensibility to disallow any complexity and dilution of its singular objective.
 
 [preamble]: Preamble.md
 [dot]: Definition-of-Terms.md
