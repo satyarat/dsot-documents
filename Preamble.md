@@ -1,5 +1,7 @@
 [![status](https://img.shields.io/badge/status-Open-blue?style=for-the-badge&logo=appveyor)](https://img.shields.io/badge/status-Open-blue)
 
+## The Preamble
+
 The preamble describes the intentions and purpose of this software mechanism, which is intended to be a decentralized, distributed and unsupervised way of providing **Source of Truth (SoT)**. This forms the base for the rest of the documentation. Specifications should not deviate from what is stated herein.
 
 The basic intention and purpose is to attempt to bring forth a medium that can bring transparency and infallibility to certain aspects of the socio-economic fabric of the world, where it seems to be struggling with, and to do it with as much simplicity as possible.
@@ -16,11 +18,11 @@ To summarize, we intend to have a mechanism for SoT that has no-master, where da
 
 In order to achieve this mechanism, the following principles are determined:
 
-1. Closed to any dominion, influence or alterations
+1. System to be closed to any dominion, influence or alterations
 2. Data should always be immutable
 3. Output should not be affected by data corruption
-4. There is a way for data to persist as long as required
+4. There is a way for data to persist for as long as required
 5. Data not to be used for unintended purposes
 6. Data not to be accessed in anyway other than the system permits
-7. Intuitive, easy and secure ways to be made available to the user to protect their data and exchange messages
-8. Be simple, as much as possible
+7. Simple APIs to be made available to the end user to exchange and protect messages
+8. Bear simplicity, as much as possible
