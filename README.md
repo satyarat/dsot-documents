@@ -2,7 +2,7 @@ This is a draft documentation for the design and specifications of **Decentraliz
 
 This document will be used to define, refine and lock the design and specifications for this software mechanism.
 
-Any and all parts of these documents will be open for review and change as long as it adheres to the intentions of developing this mechanism (formalized in the Preamble). Most of the content before the specifications are my preliminary approaches and concepts. Changes to them will eventually affect the specifications documents.
+Any and all parts of these documents will be open for review and change as long as it adheres to the intentions of developing this mechanism (formalized in the [Preamble][preamble]). Most of the content before the specifications are my preliminary approaches and concepts. Changes to them will eventually affect the specifications documents.
 
 <u>High-level overview of design and development process</u>:
 > concept –> design –> functional specifications –> technical specifications –> TDD –> code –> functional test –> unit implementation –> integrations tests –> final implementation
