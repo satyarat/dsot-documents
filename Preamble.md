@@ -10,12 +10,12 @@ The Preamble describes the intentions and purpose of this digital mechanism. Spe
 
 ## Vision
 
-The goal is to introduce a transparent, tamper‑resistant medium that can play a role in enhancing the socio‑economic fabric of the world by:
+The objective is to introduce a transparent, tamper‑resistant medium that can play a role in enhancing the socio‑economic fabric of the world by adhering to the following basic goals:
 
-* providing **universal access to a single, trust worthy source of truth**.
-* providing the ability for **permanent data persistence** while remaining highly available.
-* preventing **unauthorized manipulation or misuse** of the stored information.
-* keeping the system **simple and resilient**, thereby enabling rapid adoption and minimal maintenance.
+* providing **universal access to a single, trust worthy source of truth**
+* providing the ability for **permanent data persistence** while remaining highly available
+* preventing **unauthorized manipulation or misuse** of the stored information
+* keeping the system **simple and resilient**, thereby enabling rapid adoption and minimal maintenance
 
 ## Required Capabilities
 
