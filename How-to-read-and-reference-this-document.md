@@ -1,17 +1,53 @@
-This document is divided into different sections for easy acquaintance and categorization. These sections can be seen as waterfall steps.
+# 📘 Documentation Overview
 
-It starts with the [Preamble][preamble], which establishes the intentions of the project and defines the principles to adhere to while in development. The next section, [Design Concept][dc] describes the high-level design of the mechanism. It prescibes to the Preamble and provides foundational ideas about the implementation. The [Definition of terms][dot] section contains the definitions of the contextual terms used within these documents. Next, the [Software Components][sc] section presents the software components that will be needed to piece together the complete implementation. Then the [Entities][ent] section would define the entities for data modeling. Thereafter, the [Design details][dt] section will elaborate on the designs in detail and establish what will become the functional specifications. These sections would be fluid and explanatory. The next set of sections would eventually become concrete (depending on their status) and will form the foundation of the actual implementation.
+This repository is structured to guide contributors through the complete lifecycle of system design and implementation. The documentation follows a waterfall-style progression, starting from conceptual foundations and culminating in detailed specifications and APIs.
 
-The [FSD][fsd] section will meticulously document the precise functional specifications. Based on this, we would have the [TSD][tsd] section that will document the technical specifications. Lastly, we would have the documentation for system [APIs][api]. These three sections can have multiple layers of sub-sections and will be the source of reference for both tests and code. Each sub-section can have its own running status.
+---
 
-For system designers, section [1][preamble], [2][dc] and [6][dt] are of main interest. For developers, it is the rest of the sections.
+## 🧭 Navigation Guide
 
-[preamble]: Preamble.md
-[dc]: Design-Concept.md
-[dot]: Definition-of-Terms.md
-[sc]: Software-Components.md
-[ent]: Entities.md
-[dt]: Design-Details.md
-[fsd]: fsd/Functional-Specification-Document.md
-[tsd]: tsd/Technical-Specification-Document.md
-[api]: apis/API.md
+### 🔹 Foundational Sections
+
+| Section | Description |
+|--------|-------------|
+| [Preamble](Preamble.md) | Establishes the project's guiding principles and development philosophy. |
+| [Design Concept](Design-Concept.md) | Outlines the high-level architectural vision, grounded in the Preamble. |
+| [Definition of Terms](Definition-of-Terms.md) | Defines key terminology used throughout the documentation. |
+
+### 🔹 Planning and Modeling
+
+| Section | Description |
+|--------|-------------|
+| [Software Components](Software-Components.md) | Lists the modular software components required for implementation. |
+| [Entities](Entities.md) | Defines core data models and entities for system functionality. |
+| [Design Details](Design-Details.md) | Elaborates on the design concept with detailed specifications. This section remains fluid to accommodate iterative refinement. |
+
+### 🔹 Specification and Implementation
+
+| Section | Description |
+|--------|-------------|
+| [Functional Specification Document (FSD)](fsd/Functional-Specification-Document.md) | Documents precise functional requirements. |
+| [Technical Specification Document (TSD)](tsd/Technical-Specification-Document.md) | Details technical implementation strategies derived from the FSD. |
+| [API Documentation](apis/API.md) | Defines system interfaces, including endpoints, formats, and usage guidelines. |
+
+> Each specification section may include nested sub-sections with individual status indicators to reflect progress and readiness.
+
+---
+
+## ☛ Audience Guidance
+
+### **System Designers** should focus on:
+  - [Preamble](Preamble.md)
+  - [Design Concept](Design-Concept.md)
+  - [Design Details](Design-Details.md)
+
+### **Developers** should prioritize:
+  - [Software Components](Software-Components.md)
+  - [Entities](Entities.md)
+  - [FSD](fsd/Functional-Specification-Document.md)
+  - [TSD](tsd/Technical-Specification-Document.md)
+  - [API Documentation](apis/API.md)
+
+---
+
+For questions, contributions, or clarifications, please refer to the relevant section or reach out via the project's communication channels.
