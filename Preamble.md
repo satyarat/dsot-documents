@@ -1,28 +1,52 @@
-[![status](https://img.shields.io/badge/status-Open-blue?style=for-the-badge&logo=appveyor)](https://img.shields.io/badge/status-Open-blue)
+![status](https://img.shields.io/badge/status-Open-blue?style=for-the-badge&logo=appveyor)
 
-## The Preamble
+# Preamble
 
-The preamble describes the intentions and purpose of this software mechanism, which is intended to be a decentralized, distributed and unsupervised way of providing **Source of Truth (SoT)**. This forms the base for the rest of the documentation. Specifications should not deviate from what is stated herein.
+## Purpose
 
-The basic intention and purpose is to attempt to bring forth a medium that can bring transparency and infallibility to certain aspects of the socio-economic fabric of the world, where it seems to be struggling with, and to do it with as much simplicity as possible.
+This document outlines the intentions and purpose of the Decentralized Source of Truth (DSoT) mechanism. DSoT aims to provide a decentralized, distributed, and unsupervised system for establishing and maintaining a verifiable *Source-of-Truth*.
 
-In order to achieve this, we require a way to provide an unbreachable safe box (metaphorically) where messages can be exchanged securely, without loss and tampering, and without any centralized and supervised mechanism. We also require that data remains available for as long as required and no one should be able to influence/alter the mechanism and/or change or delete the data it will hold. Lastly, we require that the mechanism must be able to prevent any unintended use. This establishes the basic idea of what we wish to achieve here.
+The Preamble describes the intentions and purpose of this digital mechanism. Specifications should not deviate from what is stated or implied herein.
 
-The best option to implement this mechanism is to use the distributed computing resources, which quite logically, would be provided by the very users who intend to use this mechanism. A user will have to part with limited computing resources to join the others on the ether.
+## Vision
 
-Furthermore, we want this to be as simple as possible. Simplicity would bring both efficiency and resilience. This means that the mechanism needs to function on the simplest of data structuring and relations. It should rely on simple but unbreachable ways of consuming inputs and providing outputs. Its only job should be to provide SoT and any auxiliary functions will only be to make this primary function robust, easy and trustful.
+The goal is to introduce a transparent, tamper‑resistant medium that can play a role in enhancing the socio‑economic fabric of the world by:
 
-Since this entire mechanism will be in public domain and completely transparent, we would need a way to transparently forge and secure the binaries of the software that a node on the ether will run. The ether should be formed with the combination of this forge and the binaries it will publish, which also means that there can be multiple ‘ethers’ independent of each other, and having varied expanse of influence.
+* providing **universal access to a single, trust worthy source of truth**.
+* providing the ability for **permanent data persistence** while remaining highly available.
+* preventing **unauthorized manipulation or misuse** of the stored information.
+* keeping the system **simple and resilient**, thereby enabling rapid adoption and minimal maintenance.
 
-To summarize, we intend to have a mechanism for SoT that has no-master, where data cannot be tampered with or used for unintended purposes, and where data can potentially reach a state of imperishable persistence while not losing availability at any point of time.
+## Required Capabilities
 
-In order to achieve this mechanism, the following principles are determined:
+To realize this vision, the system must provide a secure, tamper-proof environment for data exchange and persistence, devoid of centralized control and supervisory mechanisms. Specifically, the following capabilities are essential:
 
-1. System to be closed to any dominion, influence or alterations
-2. Data should always be immutable
-3. Output should not be affected by data corruption
-4. There is a way for data to persist for as long as required
-5. Data not to be used for unintended purposes
-6. Data not to be accessed in anyway other than the system permits
-7. Simple APIs to be made available to the end user to exchange and protect messages
-8. Bear simplicity, as much as possible
+* **Immutable Data Storage:**  Data must be permanently stored and unalterable, ensuring a verifiable historical record
+* **Data Availability:**  Data should remain consistently accessible over extended periods
+* **Tamper Resistance:** The system should be resistant to unauthorized modification or corruption of data
+* **Prevention of Misuse:**  Mechanisms should be in place to prevent unintended or malicious utilization of the system
+
+## Design Fundamentals
+
+**Architectural Approach:** The most effective implementation leverages distributed computing resources provided by the system's users. Participation involves a limited contribution of computing resources, fostering a collaborative and self-sustaining network.
+
+**Design Philosophy:** Simplicity is paramount. An uncomplicated design promotes both operational efficiency and resilience. The core function remains the provision of a verifiable Source of Truth, with any auxiliary functionalities designed to enhance robustness, usability, and trustworthiness.
+
+**Binary Distribution and Network Formation:** Given the public domain and transparent nature of the DSoT mechanism, a secure and verifiable process for creating and distributing software binaries is crucial. An "ether" (network) will be formed with a combination of a secure binary forge and the distribution of its binaries, enabling the existence of independent and geographically diverse networks with varying degrees of influence.
+
+## Core Principles
+
+The following principles of have been determined for this system, which shall be used as the foundation of the system design.
+
+1. **No external control** – The system is to be closed to any dominion, influence or alterations
+2. **Immutablity** – Once written, data cannot be altered or deleted by users
+3. **Integrity** – Output is not to be affected by data corruption
+4. **Persistence** – Data can potentially become persistent for as long as required
+5. **Purpose‑bound use** – The system should exist solely to deliver the Source of Truth mechanism
+6. **Strict access control** – Data is readable or writable only through the system’s defined interfaces
+7. **User friendly APIs** – Clear, minimal APIs enable secure message exchange for end users
+8. **Simplicity first** – The architecture would rely on the simplest possible design and operations to maximize efficiency and resilience
+
+## Summary
+
+The intended outcome is a masterless *Source of Truth* system, that promises data integrity, data persistence and high availability in all situations.
