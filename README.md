@@ -1,4 +1,4 @@
-# Introduction - Documentation for Decentralized Source of Truth (DSoT) 
+# Documentation for Decentralized Source of Truth (DSoT) 
 
 This document serves as the definitive source for the design and specifications of **Decentralized Source of Truth (DSoT)**, bearing the moniker - **Satyarat**. It is meant to be a mechanism for persisting a source of truth (**SoT**) across distributed nodes operating under a common software component set.  An introductory overview of this concept was presented [here](https://satyarat.github.io/home).
 
