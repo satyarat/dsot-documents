@@ -55,4 +55,4 @@ If you intend to contribute to this project or utilize the information contained
 
 ## Community Engagement
 
-Join our [Discord 💬](https://discord.gg/pAEzwZY9Su) for discussions, questions, and collaboration.
+Join our [Discord](https://discord.gg/pAEzwZY9Su) 💬 for discussions, questions, and collaboration.
