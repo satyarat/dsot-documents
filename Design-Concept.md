@@ -1,56 +1,52 @@
 [![status](https://img.shields.io/badge/status-Open-blue?style=for-the-badge&logo=appveyor)](https://img.shields.io/badge/status-Open-blue)
 
-## Design Concept
+## Design Concept: Satyarat (DSoT)
 
-This document describes the preliminary design concepts for *Satyarat* (DSoT). This will further ensue documenting the design in detail.
+This document outlines the preliminary design concepts for Satyarat (DSoT). It builds upon the principles established in the Preamble and will be followed by more detailed design specifications.
 
-As can be inferred from the introduction, this will be a P2P based mechanism where data and local processing will be borne by every node. The main goals are security, immutability, distribution, availability and persistence of data.
+As previously stated, Satyarat will utilize a peer-to-peer (P2P) architecture where data storage and processing are distributed across all participating nodes. Key goals include ensuring the security, immutability, distribution, availability, and persistence of data.
 
-An essential idea is that the entire mechanism itself should be the way to achieve all the goals, including resilience to data corruption. Which means no single technological technique is going to fulfill all or any of the features in isolation, but all of them should be accomplished by the entire mechanism and the spread of adoption. This is in adherence to the principles listed in the preamble, especially the 7th.
+A core design principle is that the entire system, and its adoption, should contribute to achieving these goals, rather than relying on isolated technological solutions. This approach aligns with the principles outlined in the [Preamble][preamble], particularly number eight.
 
-Another distinctive idea is that data security can be based on short and precise human memories. Users can choose to secure their data based on their real-life memories around the data, something which they can remember back. This should mitigate the need for any overcomplicated computational way to secure the data.
+**Human-Memory-Based Data Security:** A distinguishing feature is the incorporation of human memory as a security mechanism. Users can optionally anchor their data with personal memories, creating a uniquely secure key that is resistant to computational compromise.
 
-Data, of essence, will be mainly composed of messages, which will be the actual SoT. Based on their distribution, these messages can be in different states of persistence. These are – local, afloat, concrete and fulfilled. The ‘fulfilled’ state is for transactions between two different entities, which is when we can say it is safe and secure to form contracts over them. The definitions of contextual terms can be found in the [Definitions of terms][dot] section.
+**Data States:** Data within the system, primarily represented as messages forming the Source of Truth (SoT), will exist in various states of persistence: local, afloat, concrete, and fulfilled. The "fulfilled" state signifies a secure and verifiable basis for contractual agreements between entities.  Definitions of key terms can be found in the [Definitions of Terms][dot] section.
 
-The design has to take into the consideration the principles defined in the [Preamble][preamble], and so we start with a high level design concept that can ensure that these principles are adhered to.
+The design adheres to the principles defined in the [Preamble][preamble]. This document will examine how the design concept addresses each principle.
 
-### **<ins>Principle 1</ins>**: System closed to any dominion and alterations
+### <ins>Principle 1</ins>: System closed to any dominion and alterations
 
-We have already described that the basic design will be a P2P, distributed computing and distributed storage mechanism. Each node will have the same logical computing and will operate on its own without any means for external influence. However, this mechanism also requires one more component. This component can be called the *Forge*, as it will be the one to churn out the required binaries. The Forge and the nodes that it will produce, will form an *ether* when connected over a network. Each node has to be registrated with the Forge to be on the ether. They will be validated by the Forge with a unique signature before allowing its registration, after which the node can become eligible for peer discovery and become operational.
+The core P2P architecture distributes computing and storage across all nodes, preventing centralized control. To ensure further security, a “Forge” component is introduced. The Forge is responsible for generating and validating software binaries for nodes joining the network, forming an "ether" when interconnected. Nodes must register with and be validated by the Forge before joining the ether, receiving a unique signature.
 
-The basic idea is as follows. An entity can initiate and publish a Forge. A user who wants to be on this ether can request a binary from this Forge to run on their machine as a node on the ether. When the node runs, it registers itself with the Forge and the Forge adds it to a list of valid nodes. If say, this is the first node on this particular ether, and another node comes online, the Forge will send a signal to the existing node(s) about the presence of this new node. The existing node can then ping this new node and add it to its own list. A node can infer adjacency by calculating response time from peer node. The new node can request a streaming list of nodes from the Forge and update its local list by pinging other nodes from the received list.
+The basic ideas is as follows: An entity can initiate and publish a Forge. Users requesting binaries from this Forge run a node on the ether. Upon registration, the Forge adds the node to its list of valid nodes. A new node is notified to existing nodes, which in turn can ping the new node and add it to their own lists. Node adjacency is inferred through response time calculations. New nodes can request a list of peers from the Forge and update their local lists by pinging the listed nodes.
 
-Each node will also carry the fingerprint of the Forge, so that if a dirty binary is created from a compromised version of this Forge, the existing nodes can reject it.
+Each node carries a fingerprint of the Forge, enabling the rejection of binaries generated from compromised versions. This mechanism prevents unauthorized data alterations by ensuring all nodes belong to their originating Forge.
 
-This mechanism aims to ensure that the nodes always belong to its publishing Forge and hence cannot be used to alter data by way of using a tampered node that the Forge cannot identify as its own.
+### <ins>Principle 2</ins>: Data should always be immutable
 
-### **<ins>Principle 2</ins>**: Data should always be immutable
+The design incorporates immutable and tamper-proof storage systems, leveraging open-source solutions where appropriate. However, the system also mitigates risks associated with potential storage breaches through data replication and consensus mechanisms.
 
-To fulfill this, we would be using a storage system that is immutable and tamper-proof. We have a few open-source storage systems that we can use and/or extend to meet this requirement. However, we also do not want to rely completely on the capabilities of the storage system. What happens if the storage is breached? That takes us to number three.
+### <ins>Principle 3</ins>: Output remains unaffected by data corruption
 
-### **<ins>Principle 3</ins>**: Output remains unaffected by data corruption
+Data is categorized as: one - user-generated information and two - associated metadata. Modifying metadata for data originating from the user's own node is acceptable, if not used in message processing. Altering any other data or its metadata constitutes data corruption. This can occur through compromised nodes or by breaching data store immutability.
 
-Data can be viewed in a few different ways in this system. First we can say we have the data - the information generated by a user and the metadata - the information used to identify and/or garnish information about the data. Another category would be the data that originated on the 'current' user node. Altering metadata for this type of data should not correspond to data corruption, if the metadata is never used in message processing in anyway. Then we have the data that orignated elsewhere on the ether. Making any change to this data or its metadata will definitely be termed as data corruption. This can happen in two ways. First, by creating a dirty node that can alter data after they are received or before they are synced. Second, by breaking the encryption of the stored data or finding a way to bypass the immutability of the data store.
+Compromised nodes are addressed by the node registration and validation process described above. Data store immutability is further protected through multi-layered encryption, intelligent key management, and consensus-based data replication. A consensus mechanism is employed to validate data, mark compromised nodes as “dirty,” and prevent further replication. Contracts over a message require 100% consensus across a predetermined number of nodes (TBD).
 
-The first scenario is taken care of by implementing a mechanism as discussed previously under the first principal. The second scenario is very unlikely, but a contigency needs to be in place even for that. This involves further two scenarios - data leak and data alter. Data leak by breaking of encryption can be prevented by providing options for multi-layered encryptions and intelligent implementations of key management and algorithms. The solution to data corruption is inherent in the data replication design, which should enable consesus gathering and validation on the basis of it. Presuming that it does, this should also allow to mark the culprit node as dirty. Once a dirty node is discovered it would be evicted from the list of valid nodes and as such all replication would stop from the node. A contract can be formed over a message only if it is secured on all the allowed maximum number of nodes (TBD) with 100% consensus.
+### <ins>Principle 4</ins>: Data persistence for as long as required
 
-### **<ins>Principle 4</ins>**: Data persistence for as long as required
+Data persistence is inherently ensured through network adoption and data replication. There will be an upper limit on the number of nodes where data would be replicated.
 
-The adoption of the medium itself will ensure it. If there are sufficient nodes available, replication will ensure that data persistence gradually becomes almost absolute. However, we need to put an upper limit on the number of times a data record can be replicated.
+### <ins>Principle 5 & 6</ins>: Data to be used only for intended purposes
 
-### **<ins>Principle 5 & 6</ins>**: Data to be used only for intended purposes
+These principles are reinforced by restricting data exchange to provided APIs, employing robust encryption, and maintaining an immutable data store. The integrity of nodes is protected through the registration and validation process.
 
-These principles can be affirmed by allowing data exchange only through provided APIs. By employing superior encryption mechanisms and immutabe data store, we can close down all other ways. We have already discussed ways to protect node integrity.
+### <ins>Principle 7</ins>: APIs for end user
 
-### **<ins>Principle 7</ins>**: APIs for end user
+The system will provide a simple and intuitive set of APIs, allowing users to exchange messages and secure their data with configurable options. These options include layered encryption, key management, and generation of secure keys using human-memory anchoring.
 
-The system should present an uncomplicated set of APIs for the end user to enable them to exchange messages and protect their data with certain options to choose as they deem fit.
+### <ins>Principle 8</ins>: Simplicity and inextensibility
 
-These options can involve a choice of layered encryptions, key management and ways to generate their secure keys, including using their real-life memories that they can reproduce in one go or in a series of events.
-
-### **<ins>Principle 8</ins>**: Simplicity and inextensibility
-
-This is about the design itself. This is about creating a logical mechanism that fulfills its goal in the most 'organic' way, rather than falling onto complex algorithms (which generally leads to unmanageable and thorny side-effects) to provision the requirements. The system should be closed to any extensibility to disallow any complexity and dilution of its singular objective.
+The design prioritizes logical and organic solutions, avoiding complex algorithms that can introduce unintended side effects. To maintain focus and avoid complexity, the system will be designed to be closed to extensibility.
 
 [preamble]: Preamble.md
 [dot]: Definition-of-Terms.md
